@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "tb_game")
 public class Game {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,18 +18,24 @@ public class Game {
     @Column(name = "game_year")
     private Integer year;
     private String genre;
-    private String platform;
-    private String imageUrl;
+    private String platforms;
+    private Double score;
+    @Column(name = "img_url")
+    private String imgUrl;
+    @Column(name = "short_description", columnDefinition = "TEXT")
     private String shortDescription;
+    @Column(name = "long_description", columnDefinition = "TEXT")
     private String longDescription;
-    public Game(Long id, String title, Integer year, String genre, String platform, String imageUrl,
+
+    public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imageUrl,
             String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.genre = genre;
-        this.platform = platform;
-        this.imageUrl = imageUrl;
+        this.platforms = platforms;
+        this.score = score;
+        this.imgUrl = imageUrl;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
     }
@@ -58,17 +65,23 @@ public class Game {
     public void setGenre(String genre) {
         this.genre = genre;
     }
-    public String getPlatform() {
-        return platform;
+    public String getPlatforms() {
+        return platforms;
     }
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
     }
-    public String getImageUrl() {
-        return imageUrl;
+    public Double getScore() {
+        return score;
     }
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setScore(Double score) {
+        this.score = score;
+    }
+    public String getImgUrl() {
+        return imgUrl;
+    }
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
     public String getShortDescription() {
         return shortDescription;
@@ -105,6 +118,8 @@ public class Game {
             return false;
         return true;
     }
+    
+    
 
     
 }
