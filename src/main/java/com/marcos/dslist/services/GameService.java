@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.marcos.dslist.dto.GameDto;
+import com.marcos.dslist.dto.GameMinDto;
 import com.marcos.dslist.entities.Game;
 import com.marcos.dslist.repositories.GameRepository;
 
@@ -18,9 +19,9 @@ public class GameService {
     private GameRepository gameRepository;
 
     @Transactional(readOnly = true)
-    public List<Game> findAll(){
+    public List<GameMinDto> findAll(){
         List<Game> res = gameRepository.findAll();
-        return res;
+        return res.stream().map(x -> new GameMinDto(x)).toList();
     }
 
     @Transactional(readOnly = true)

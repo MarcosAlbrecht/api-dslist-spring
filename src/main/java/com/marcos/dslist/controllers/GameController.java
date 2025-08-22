@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.marcos.dslist.dto.GameDto;
 import com.marcos.dslist.dto.GameMinDto;
-import com.marcos.dslist.entities.Game;
 import com.marcos.dslist.services.GameService;
 
 @RestController
@@ -24,9 +23,9 @@ public class GameController {
 
     @GetMapping()
     public ResponseEntity<List<GameMinDto>> findAll() {
-        List<Game> result = gameService.findAll();
-        List<GameMinDto> dto = result.stream().map(game -> new GameMinDto(game)).toList();
-        return new ResponseEntity<List<GameMinDto>>(dto, HttpStatus.OK);
+        List<GameMinDto> result = gameService.findAll();
+        
+        return new ResponseEntity<List<GameMinDto>>(result, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
